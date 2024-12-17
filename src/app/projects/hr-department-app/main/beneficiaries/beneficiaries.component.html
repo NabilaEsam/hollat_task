@@ -1,0 +1,83 @@
+<div class="p-5">
+    <h2>{{ "List All Beneficiaries" | translate }}</h2>
+
+    <div class="flex justify-content-between align-items-center mb-3 gap-3 flex-wrap">
+        <div class="flex gap-3 flex-wrap">
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input type="text" pInputText [(ngModel)]="searchName" [placeholder]="'Search by name' | translate" />
+            </p-iconfield>
+
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input type="text" pInputText [(ngModel)]="searchBudget" [placeholder]="'Search by budget' | translate" />
+            </p-iconfield>
+        </div>
+
+        <div class="flex gap-2">
+            <p-button [label]="'Search' | translate" (onClick)="search()" />
+            <p-button [label]="'Clear' | translate" [outlined]="true" (onClick)="clearFilters()" />
+        </div>
+    </div>
+
+    <div class="card">
+        <p-table [value]="beneficiaries" [tableStyle]="{'min-width': '60rem'}" [rows]="10" [paginator]="true">
+            <ng-template #header>
+                <tr>
+                    <th pSortableColumn="name" style="width:20%">
+                        {{"Name" | translate}} <p-sortIcon field="name" />
+                    </th>
+                    <th pSortableColumn="budget" style="width:20%">
+                        {{"Budget" | translate}} <p-sortIcon field="budget" />
+                    </th>
+                    <th style="width:20%">
+                        {{"Rating" | translate}}
+                    </th>
+
+                    <th style="width:20%">
+                        {{"Is hero" | translate}}
+                    </th>
+
+                    <th style="width:20%">
+                        {{"Is verified" | translate}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-user>
+                <tr>
+                    <td>
+                        <a class="usernameStyle" (click)="viewProfile(user)">
+                            {{ user.name }}
+                        </a>
+                    </td>
+                    <td>{{ user.budget }}</td>
+                    <td>
+                        <p-rating [(ngModel)]="user.rating" (onRate)="detectRatingFun($event,user.id)"
+                            [disabled]="userData.id == user.id" />
+                    </td>
+                    <td>
+                        @if (user.isHero == true) {
+                            <p-tag [value]="(user.isVerified ? 'Verified' : 'Pending') | translate" [severity]="getSeverity(user.isVerified)" />
+                        } @else {
+                            {{'-'}}
+                        }
+                    </td>
+                    <td>
+                        @if (userData.role == 'Admin' && user.isHero) {
+                            <p-button 
+                                icon="pi pi-check-circle" 
+                                [rounded]="true" 
+                                [text]="true" 
+                                [severity]="'success'"
+                                (click)="approveHero(user.id)" 
+                                [disabled]="user.isVerified" 
+                            />
+                        } @else {
+                            {{'-'}}
+                        }
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<p-menubar class="custom-navbar">
+    <!-- Logo -->
+    <ng-template #start>
+        <a routerLink="/">
+            <img src="assets/imgs/hollat-logo.svg" alt="Logo" class="logo" />
+        </a>
+    </ng-template>
+
+    <!-- Change Language -->
+    <ng-template #end>
+        <div class="navbar-end">
+            <app-lang-icon>
+                <p-button icon="pi pi-language" [rounded]="true" [text]="true"  />
+            </app-lang-icon>
+
+            <p-button icon="pi pi-sign-out" [rounded]="true" [text]="true" (onClick)="logout()"  />
+        </div>
+    </ng-template>
+</p-menubar>

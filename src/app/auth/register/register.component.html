@@ -1,0 +1,107 @@
+<div class="register">
+    <h1 class="text-center">{{ "register" | translate }}</h1>
+
+    <div class="register-content">
+        <p-card>
+            <form [formGroup]="form" (ngSubmit)="submit(photo.files[0])">
+
+                <!-- name input -->
+                <div class="mb-3">
+                    <label class="block mb-2" for="name">
+                        {{ "name" | translate }}
+                        <span class="asterisk">*</span>
+                    </label>
+                    <input class="w-full" pInputText id="name" formControlName="name" aria-describedby="name" />
+                </div>
+                
+                <!-- title input -->
+                <div class="mb-3">
+                    <label class="block mb-2" for="title">
+                        {{ "title" | translate }}
+                        <span class="asterisk">*</span>
+                    </label>
+                    <input class="w-full" pInputText id="title" formControlName="title" aria-describedby="title" />
+                </div>
+
+                <!-- email input -->
+                <div class="mb-3">
+                    <label class="block mb-2" for="email">
+                        {{ "email" | translate }}
+                        <span class="asterisk">*</span>
+                    </label>
+                    <input class="w-full" type="email" pInputText id="email" formControlName="email" aria-describedby="email" />
+                </div>
+
+                <!-- username input -->
+                <div class="mb-3">
+                    <label class="block mb-2" for="username">
+                        {{ "username" | translate }}
+                        <span class="asterisk">*</span>
+                    </label>
+                    <input class="w-full" pInputText id="username" formControlName="username" aria-describedby="username" />
+                </div>
+
+                <!-- password input -->
+                <div class="mb-3">
+                    <label class="block mb-2" for="password">
+                        {{ "password" | translate }}
+                        <span class="asterisk">*</span>
+                    </label>
+                    <p-password [fluid]="true" id="password" formControlName="password" [toggleMask]="true" />
+                </div>
+
+                <!-- technologies input -->
+                <div class="mb-3">
+                    <label class="block mb-2" for="technologies">
+                        {{ "technologies" | translate }}
+                        <span class="asterisk">*</span>
+                    </label>
+                    <input class="w-full" pInputText id="technologies" formControlName="technologies" aria-describedby="technologies" />
+                </div>
+
+                <!-- photo input -->
+                <div class="mb-3">
+                    <label class="block mb-2" for="photo">
+                        {{ "photo" | translate }}
+                        <span class="asterisk">*</span>
+                    </label>
+                    <p-fileupload
+                        #photo
+                        mode="basic"
+                        [chooseLabel]="'choose' | translate"
+                        chooseIcon="pi pi-upload"
+                        accept="image/*"
+                        maxFileSize="1000000"
+                        fileLimit="1"
+                        styleClass="block w-full"
+                    />
+                </div>
+
+                <!-- budget input -->
+                <div class="mb-3">
+                    <label class="block mb-2" for="isHero">{{ "register_as_hero" | translate }}</label>
+                    <p-toggleswitch formControlName="isHero" (onChange)="changeIsHero()" />
+                </div>
+
+                <!-- budget input -->
+                 @if (form.get('isHero')?.value) {
+                    <div class="mb-3">
+                        <label class="block mb-2" for="budget">
+                            {{ "budget" | translate }}
+                            <span class="asterisk">*</span>
+                        </label>
+                        <p-inputnumber formControlName="budget" mode="decimal" inputId="budget" [fluid]="true" min="0" [useGrouping]="false" />
+                    </div>
+                 }
+    
+                <div class="buttons mt-4">
+                    <p-button type="submit" [label]="'register' | translate" [fluid]="true" />
+                </div>
+
+                <div class="register-msg mt-2">
+                    <small>{{ "login_msg" | translate }} <a routerLink="../login">{{ "login" | translate }}</a></small>
+                </div>
+            </form>
+        </p-card>
+    </div>
+</div>

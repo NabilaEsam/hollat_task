@@ -1,0 +1,14 @@
+<div>
+    <div class="flex justify-content-center">
+        <p-avatar [image]="user?.photo" shape="circle" size="xlarge"></p-avatar>
+    </div>
+    <p><strong>{{"name:" | translate}}</strong> {{ user?.name }}</p>
+    <p><strong>{{"email:" | translate}}</strong> {{ user?.email }}</p>
+    <p><strong>{{"title:" | translate}}</strong> {{ user?.title }}</p>
+    <p><strong>{{"technologies:" | translate}}</strong> {{ user?.technologies }}</p>
+    <p class="flex align-items-center gap-1">
+        <strong>{{"rating:" | translate}}</strong>
+        <p-rating [(ngModel)]="user.rating" [readonly]="true" />
+    </p>
+    <p><strong>{{"budget:" | translate}}</strong> {{ user?.budget }}</p>
+</div>

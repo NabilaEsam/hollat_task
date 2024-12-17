@@ -1,0 +1,21 @@
+<div class="auth">
+    <app-lang-icon class="flex p-2 flex-row-reverse">
+        <p-button icon="pi pi-language" [rounded]="true"  />
+    </app-lang-icon>
+
+    <div class="grid m-0">
+        <div class="md:col-6 col-12 p-0">
+            <div class="form-section">
+                <router-outlet />
+            </div>
+        </div>
+
+        <div class="md:col-6 p-0 hidden md:block">
+            <div class="logo-section">
+                <div class="pic justify-content-center align-content-center flex">
+                    <img src="assets/imgs/hollat-logo.svg">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

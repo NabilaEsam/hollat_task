@@ -1,0 +1,56 @@
+<div class="login">
+    <h1 class="text-center">{{ "login" | translate }}</h1>
+
+    <div class="login-content">
+        <p-card>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <!-- role select -->
+                 <div class="mb-5 text-center">
+                    <p-selectbutton 
+                        [options]="roles" 
+                        [optionLabel]="localizeRouterService.parser.currentLang == 'ar' ? 'title_ar' : 'title_en'" 
+                        [optionValue]="'value'" 
+                        formControlName="role" 
+                        optionLabel="label" 
+                        optionValue="value" 
+                        aria-labelledby="basic" 
+                    />
+                 </div>
+    
+                <!-- username input -->
+                <div class="mb-3">
+                    <label class="block mb-2" for="username">
+                        {{ "username" | translate }}
+                        <span class="asterisk">*</span>
+                    </label>
+                    <input class="w-full" pInputText id="username" formControlName="username" aria-describedby="username" />
+                </div>
+    
+                <!-- password input -->
+                <div class="mb-3">
+                    <label class="block mb-2" for="password">
+                        {{ "password" | translate }}
+                        <span class="asterisk">*</span>
+                    </label>
+                    <p-password [fluid]="true" id="password" formControlName="password" [toggleMask]="true" />
+                </div>
+    
+                <div class="buttons mt-4">
+                    <p-button type="submit" [label]="'login' | translate" [fluid]="true" />
+                </div>
+
+                @if (form.get('role')?.value == 'Benificiary') {
+                    <div class="register-msg mt-2">
+                        <small>{{ "register_msg" | translate }} <a routerLink="../register">{{ "join_us" | translate }}</a></small>
+                    </div>
+                }
+
+                @if (form.get('role')?.value == 'Admin') {
+                    <div class="default-login-msg mt-2">
+                        <small>{{ "default_login_msg" | translate }} <br> {{ "username" | translate }}: <b>admin</b> {{ "password" | translate }}: <b>admin123</b></small>
+                    </div>
+                }
+            </form>
+        </p-card>
+    </div>
+</div>

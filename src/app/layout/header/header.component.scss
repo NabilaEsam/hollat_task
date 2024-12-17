@@ -1,0 +1,27 @@
+.custom-navbar {
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // background-color: #fff;
+    // border-bottom: 1px solid #ddd;
+    // padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .navbar-end {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .profile-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
